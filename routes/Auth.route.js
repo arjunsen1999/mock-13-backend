@@ -42,15 +42,8 @@ authRouter.post("/signup", [
 
 
 
-authRouter.post("/login", [
-    body('email', "Enter a valid email").isEmpty(),
-    body('password', "Enter a Valid Password").not().isEmpty(),
-], async (req, res) =>{
+authRouter.post("/login", async (req, res) =>{
     try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ msg : errors.errors[0].msg });
-        }
         let {email, password} = req.body;
 
         let isAuth = await AuthModel.findOne({email});
