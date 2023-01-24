@@ -43,7 +43,7 @@ authRouter.post("/signup", [
 
 
 authRouter.post("/login", [
-    body('email', "Enter a valid email").isEmail(),
+    body('email', "Enter a valid email").isEmpty(),
     body('password', "Enter a Valid Password").not().isEmpty(),
 ], async (req, res) =>{
     try {
